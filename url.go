@@ -8,6 +8,7 @@ import (
 	"flag"
 	"github.com/mattn/go-runewidth"
 	"github.com/nsf/termbox-go"
+	"path/filepath"
 	"log"
 	"os"
 	"os/exec"
@@ -49,20 +50,26 @@ func main() {
 
 	box := IBox{width: w, height: h}
 
-	file, err := os.Open(file)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
+	glob, _ := filepath.Glob(file)
 
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		box.text = append(box.text, scanner.Bytes())
-		//fmt.Println(scanner.Text())
-	}
+	for _, path := range (glob) {
+		//fmt.Println(path)
 
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
+		f, err := os.Open(path)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer f.Close()
+
+		scanner := bufio.NewScanner(f)
+		for scanner.Scan() {
+			box.text = append(box.text, scanner.Bytes())
+			//fmt.Println(scanner.Text())
+		}
+
+		if err := scanner.Err(); err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	for {
