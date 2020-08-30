@@ -10,6 +10,7 @@ func main() {
 	timestamp := time.Now().Unix()
 
 	fmt.Println(timestamp)
+	fmt.Println(time.Now().Format("2006-01-02 03:04:05 PM"))
 
 	//格式化为字符串,tm为Time类型
 	tm := time.Unix(timestamp, 0)
@@ -22,6 +23,10 @@ func main() {
 	tm2, _ := time.Parse("01/02/2006", "02/08/2015")
 
 	fmt.Println(tm2.Unix())
+
+	tm3, _ := time.Parse("200601", "202001")
+
+	fmt.Println("tm3"+tm3.Format("2006-01-02 03:04:05 PM"))
 
 	start := time.Now()
 	time.Sleep(time.Second*1)

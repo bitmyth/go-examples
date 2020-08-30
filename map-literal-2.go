@@ -13,5 +13,11 @@ var m = map[string]Vertex{
 
 func main() {
 	fmt.Println(m)
+	val,ok:=m["Google"]
+	fmt.Println(val,ok)
+	for k,v :=range m {
+	fmt.Println(k)
+	fmt.Println(v)
+	}
 }
 

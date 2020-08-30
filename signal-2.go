@@ -32,7 +32,6 @@ func InitSignal() {
         SIGINT        用户发送INTR字符(Ctrl+C)触发
         SIGSTOP        停止进程(不能被捕获、阻塞或忽略)
     */
-    // ？？？
     signal.Notify(c, syscall.SIGHUP, syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT, syscall.SIGSTOP)
     for {
         s := <-c
@@ -57,6 +56,7 @@ func InitSignal() {
 }
 
 func reload() {
+	Conf:=1;
     logs.Error("after Conf -->  %v", Conf)
     err := InitConf()
     if err != nil {
@@ -66,8 +66,8 @@ func reload() {
     logs.Error("before Conf -->  %v", Conf)
 }
 
-func InitConf(){
-	// 
+func InitConf()error{
+	return nil
 }
 
 func main() {

@@ -6,9 +6,9 @@ import (
 )
 
 func sleep(){
-	fmt.Println("sleep 300s")
-	time.Sleep(300000 * time.Millisecond)
-	fmt.Println("end sleep 300 second")
+	fmt.Println("sleep 30s")
+	time.Sleep(30000 * time.Millisecond)
+	fmt.Println("end sleep 30 second")
 }
 
 func say(s string) {
